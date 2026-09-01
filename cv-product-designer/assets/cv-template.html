@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nombre Apellido — Product Designer</title>
+<style>
+/* ─────────────────────────────────────────────────────────
+   AJUSTES RÁPIDOS — toca solo esto
+   ───────────────────────────────────────────────────────── */
+:root{
+  --font-text: "Söhne", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-head: var(--font-text);      /* una serif aquí da un contraste elegante */
+
+  --size-name: 22pt;
+  --size-role: 10.5pt;
+  --size-h2:   8.5pt;                 /* encabezados de sección */
+  --size-h3:   10.5pt;                /* cargos */
+  --size-body: 9.7pt;
+  --size-meta: 8.8pt;                 /* fechas, empresa, contacto */
+
+  --leading: 1.45;
+
+  --ink:      #16181d;                /* texto principal */
+  --ink-soft: #55596180;              /* no usar: ver --muted */
+  --muted:    #565b64;                /* metadatos — contraste suficiente en papel */
+  --accent:   #1f3a5f;                /* UN solo acento. Sobrio > llamativo */
+  --rule:     #dcdee3;
+
+  --gap-section: 15pt;                /* ritmo vertical: todo múltiplo de estos */
+  --gap-entry:   10pt;
+  --gap-line:    3pt;
+
+  --page-margin: 13mm;                /* baja a 11mm si necesitas ganar una línea */
+  --max-line:    100%;
+}
+
+/* ───────────────────────────────────────────────────────── */
+@page{ size: A4; margin: var(--page-margin); }
+
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+
+html{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body{
+  font-family: var(--font-text);
+  font-size: var(--size-body);
+  line-height: var(--leading);
+  color: var(--ink);
+  background: #fff;
+  max-width: 190mm;
+  margin: 0 auto;
+  padding: var(--page-margin);
+  font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+  text-rendering: optimizeLegibility;
+}
+@media print{ body{ padding: 0; max-width: none; } }
+
+/* ── Cabecera ─────────────────────────────────────────────
+   El contacto va en el CUERPO del documento, nunca en un
+   header de página: muchos ATS descartan headers.          */
+header{ margin-bottom: var(--gap-section); }
+
+h1{
+  font-family: var(--font-head);
+  font-size: var(--size-name);
+  font-weight: 600;
+  letter-spacing: 0;   /* sin tracking negativo: más seguro al extraer el texto */
+  line-height: 1.1;
+  color: var(--ink);
+}
+.role{
+  font-size: var(--size-role);
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 2pt;
+  letter-spacing: 0.01em;
+}
+.contact{
+  font-size: var(--size-meta);
+  color: var(--muted);
+  margin-top: 6pt;
+  line-height: 1.6;
+}
+.contact a{ color: var(--muted); text-decoration: none; }
+/* El portfolio es la línea más importante del documento:
+   visible en texto plano, no un "aquí" hipervinculado.     */
+.contact .portfolio{ color: var(--accent); font-weight: 600; }
+.sep{ color: #adb1b8; margin: 0 5pt; }
+
+/* ── Secciones ────────────────────────────────────────────
+   Encabezados estándar y reconocibles por el parser:
+   Experiencia / Experience, Formación / Education...        */
+section{ margin-bottom: var(--gap-section); }
+
+h2{
+  font-size: var(--size-h2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--accent);
+  padding-bottom: 3pt;
+  margin-bottom: 8pt;
+  border-bottom: 0.75pt solid var(--rule);
+}
+
+.summary{ max-width: 165mm; }
+
+/* ── Entradas de experiencia ──────────────────────────────
+   Cargo y fecha en la MISMA línea con flexbox: se extrae en
+   orden correcto. Esto no es un layout a dos columnas.      */
+.entry{ margin-bottom: var(--gap-entry); page-break-inside: avoid; }
+.entry:last-child{ margin-bottom: 0; }
+
+.entry-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10pt;
+}
+h3{
+  font-size: var(--size-h3);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.dates{
+  font-size: var(--size-meta);
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+/* La empresa va DENTRO del h3: cargo y empresa viajan juntos al extraer
+   el texto. En líneas separadas, algunos documentos sacan todos los pares
+   cargo+fecha primero y todas las empresas después.                     */
+h3 .org{ color: var(--accent); font-weight: 500; }
+
+/* Línea de contexto: qué es ese producto. Sitúa a quien lee, aporta el
+   vocabulario de dominio y libera un bullet entero.                     */
+.ctx{
+  font-size: var(--size-meta);
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: var(--gap-line);
+}
+
+/* ── Bullets ──────────────────────────────────────────────
+   Lista real (<ul>), no guiones tipográficos ni tablas.     */
+ul{ list-style: none; }
+li{
+  position: relative;
+  padding-left: 11pt;
+  margin-bottom: var(--gap-line);
+}
+li:last-child{ margin-bottom: 0; }
+li::before{
+  content: "·";
+  position: absolute;
+  left: 2pt;
+  top: -0.5pt;
+  color: var(--accent);
+  font-weight: 700;
+}
+strong{ font-weight: 600; }
+
+/* ── Habilidades ──────────────────────────────────────────
+   Agrupadas por familia. Sin barras de nivel: no significan
+   nada y el parser las lee como ruido.                      */
+.skill-row{ margin-bottom: var(--gap-line); }
+.skill-label{ font-weight: 600; }
+
+/* ── Formación ────────────────────────────────────────────
+   Al final, salvo perfil junior o cambio de carrera.        */
+.edu .entry{ margin-bottom: 6pt; }
+.native{ color: var(--muted); font-style: italic; }
+
+/* Sin viudas ni huérfanas al partir de página */
+h2, h3{ page-break-after: avoid; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Nombre Apellido</h1>
+  <div class="role">Product Designer</div>
+  <div class="contact">
+    Ciudad, País<span class="sep">·</span>nombre@email.com<span class="sep">·</span>+34 600 000 000<br>
+    <span class="portfolio">nombreapellido.com</span><span class="sep">·</span>linkedin.com/in/nombreapellido
+  </div>
+</header>
+
+<section>
+  <h2>Perfil</h2>
+  <p class="summary">
+    Product Designer con 7 años en SaaS B2B, especializada en flujos de datos densos
+    para usuarios expertos. Lideré el design system de una plataforma con 40.000 usuarios
+    activos, adoptado hoy por cinco equipos de producto.
+  </p>
+</section>
+
+<section>
+  <h2>Experiencia</h2>
+
+  <div class="entry">
+    <div class="entry-head">
+      <h3>Senior Product Designer <span class="org">— Empresa · Ciudad</span></h3>
+      <span class="dates">2022 — Actualidad</span>
+    </div>
+    <div class="ctx">SaaS B2B de gestión para equipos financieros.</div>
+    <ul>
+      <li>Reformulé la petición de «hacer un dashboard» en un problema de alertas tras observar a 15 usuarios; la solución final fueron notificaciones y se lanzó en la mitad de tiempo previsto.</li>
+      <li>Construí y documenté el design system desde cero; hoy lo usan los 5 equipos de producto y cubre el <strong>80%</strong> de las pantallas en producción.</li>
+      <li>Rediseñé el onboarding tras detectar en research que el 40% abandonaba en el paso 3; el time-to-first-value bajó de <strong>8 a 3 minutos</strong>.</li>
+      <li>Monté una revisión quincenal con producto e ingeniería que redujo los cambios de última hora en sprint de ~5 a menos de 1.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head">
+      <h3>Product Designer <span class="org">— Empresa anterior · Ciudad</span></h3>
+      <span class="dates">2019 — 2022</span>
+    </div>
+    <div class="ctx">Marketplace de comercio electrónico, 2M de pedidos al año.</div>
+    <ul>
+      <li>Rediseñé el flujo de devoluciones de principio a fin, de las entrevistas al handoff; las llamadas a soporte por ese motivo bajaron un <strong>30%</strong>.</li>
+      <li>Descarté el módulo de informes tras validar con 8 clientes que ya resolvían la necesidad exportando a Excel; el equipo reinvirtió el trimestre en facturación.</li>
+      <li>Única diseñadora de un equipo de 12: responsable de discovery, UI y handoff de tres productos en paralelo.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head">
+      <h3>Diseñadora UI <span class="org">— Estudio · Ciudad</span></h3>
+      <span class="dates">2017 — 2019</span>
+    </div>
+    <ul>
+      <li>Diseñé la app de reservas usada por 300 hoteles en 8 mercados.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Habilidades</h2>
+  <div class="skill-row"><span class="skill-label">Diseño:</span> Design systems, prototipado avanzado, diseño de interacción, accesibilidad (WCAG 2.2 AA)</div>
+  <div class="skill-row"><span class="skill-label">Research:</span> Entrevistas, tests de usabilidad moderados y no moderados, análisis cualitativo</div>
+  <div class="skill-row"><span class="skill-label">Datos:</span> Definición de eventos, Amplitude, lectura de embudos, tests A/B</div>
+  <div class="skill-row"><span class="skill-label">Técnico:</span> HTML/CSS, tokens de diseño, colaboración en Storybook</div>
+</section>
+
+<section class="edu">
+  <h2>Formación</h2>
+  <div class="entry">
+    <div class="entry-head">
+      <h3>Grado en Diseño de Producto <span class="org">— Universidad · Ciudad</span></h3>
+      <span class="dates">2013 — 2017</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Idiomas</h2>
+  <div class="skill-row">Español <span class="native">nativo</span><span class="sep">·</span>Inglés C1<span class="sep">·</span>Portugués B1</div>
+</section>
+
+</body>
+</html>
