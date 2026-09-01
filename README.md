@@ -78,4 +78,4 @@ MIT. Úsala, modifícala y compártela.
 
 ---
 
-Hecha para la comunidad de [tribUX](https://escuelatribux.com).
+Hecha para la comunidad de [tribUX](https://escuelatribux.com) por Gema Gutiérrez Medina.
