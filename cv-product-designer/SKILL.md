@@ -187,3 +187,8 @@ Cárgalos cuando los necesites, no todos de golpe:
 - `references/craft-visual.md` — maquetación: columna única, línea de contexto, ritmo, errores frecuentes.
 - `references/evaluar-encaje.md` — veredicto de encaje, eliminatorios frente a negociables, idiomas.
 - `references/adaptar-oferta.md` — cómo leer una oferta y ajustar sin mentir.
+
+---
+
+Creada por **Gema Gutiérrez Medina** — diseñadora de producto, fundadora de [tribUX](https://escuelatribux.com) y [Píldoras UX](https://pildorasux.com).
+Licencia MIT: puedes usarla, adaptarla y compartirla manteniendo la atribución.
