@@ -41,6 +41,19 @@ Al final de la respuesta, declara siempre qué portales revisaste y qué sacaste
 
 Usa `WebSearch` para localizar y `WebFetch` para abrir la oferta y **verificar la fecha real de publicación** antes de incluirla. No te fíes solo del snippet del buscador.
 
+### ATS directo (X-ray) — barrido obligatorio, una sola búsqueda
+
+Antes de repartir tu presupuesto portal por portal, lanza **una única** búsqueda combinada tipo X-ray sobre los ATS donde las empresas publican sin pasar por ningún portal ni por LinkedIn:
+
+`(site:boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:personio.de OR site:apply.workable.com OR site:jobs.smartrecruiters.com OR site:teamtailor.com OR site:factorialhr.com) ("Product Designer" OR "UX Designer" OR "UX/UI Designer") ("España" OR "Barcelona" OR "Madrid" OR remote OR remoto)`
+
+Cambia los términos de ciudad/país por los de tu propio mercado, y la lista de ATS por los que dominen en tu región (Personio y Factorial son fuertes en España/DACH; Greenhouse, Lever y Ashby son más globales).
+
+- Cubre varias plataformas en **una sola llamada a `WebSearch`**: cuenta como una búsqueda de tu tope de 6-8, no como una por plataforma.
+- `site:personio.de` cubre todos los subdominios de empresa en Personio; no hace falta una búsqueda por compañía.
+- Esto cuenta como fuente(s) no-LinkedIn adicionales a las tres portales obligatorios de arriba, no en su lugar. Decláralas por separado en el recuento final de fuentes, por plataforma: "ATS directo: Greenhouse (1), Ashby (1), resto (0)".
+- **Aviso de fecha — no relajar la regla dura:** la mayoría de fichas de Greenhouse, Lever, Ashby, Personio y Workable no muestran fecha de publicación en la propia página. Se les aplica la misma regla de siempre: sin fecha verificable al abrir la oferta, se descarta. No la incluyas "porque es exclusiva" — sigue siendo o dentro de ventana o fuera. Lo que sí traiga fecha visible vale más que lo de los portales, porque casi nunca está duplicado en LinkedIn ni InfoJobs.
+
 ### Presupuesto de búsqueda — el barrido no puede eternizarse
 
 Tienes un techo de **3-4 minutos**. Para no pasarte:
